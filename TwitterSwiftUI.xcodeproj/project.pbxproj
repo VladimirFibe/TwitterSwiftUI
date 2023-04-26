@@ -19,6 +19,7 @@
 		27FE08B129F9462200E223AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		27FE08B329F9462400E223AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27FE08B629F9462400E223AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		27FE08BD29F9463000E223AB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +36,7 @@
 		27FE08A329F9462200E223AB = {
 			isa = PBXGroup;
 			children = (
+				27FE08BD29F9463000E223AB /* README.md */,
 				27FE08AE29F9462200E223AB /* TwitterSwiftUI */,
 				27FE08AD29F9462200E223AB /* Products */,
 			);
