@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @State private var selectedFilters: TweetFilterViewModel = .tweets
+    @Environment(\.dismiss) var dismiss
     @Namespace var animation
     var body: some View {
         VStack(alignment: .leading) {
@@ -118,7 +119,7 @@ extension ProfileView {
             .overlay(
                 VStack {
                     Button {
-                        
+                        dismiss()
                     } label: {
                         Image(systemName: "arrow.left")
                             .resizable()
