@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		27712C3C29FA89490089FBF2 /* TextArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27712C3B29FA89490089FBF2 /* TextArea.swift */; };
+		27712C4129FAA2A30089FBF2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27712C4029FAA2A30089FBF2 /* LoginView.swift */; };
+		27712C4329FAA2C00089FBF2 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27712C4229FAA2C00089FBF2 /* RegistrationView.swift */; };
+		27712C4529FAC4070089FBF2 /* RoundedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27712C4429FAC4070089FBF2 /* RoundedShape.swift */; };
+		27712C4829FAD7730089FBF2 /* CustomInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27712C4729FAD7730089FBF2 /* CustomInputField.swift */; };
 		277D0ECC29F94B30004F3150 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D0ECB29F94B30004F3150 /* FeedView.swift */; };
 		277D0ECF29F95BCF004F3150 /* TweetRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D0ECE29F95BCF004F3150 /* TweetRowView.swift */; };
 		277D0ED229F968A6004F3150 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D0ED129F968A6004F3150 /* MainTabView.swift */; };
@@ -31,6 +35,10 @@
 
 /* Begin PBXFileReference section */
 		27712C3B29FA89490089FBF2 /* TextArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextArea.swift; sourceTree = "<group>"; };
+		27712C4029FAA2A30089FBF2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		27712C4229FAA2C00089FBF2 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		27712C4429FAC4070089FBF2 /* RoundedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShape.swift; sourceTree = "<group>"; };
+		27712C4729FAD7730089FBF2 /* CustomInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputField.swift; sourceTree = "<group>"; };
 		277D0ECB29F94B30004F3150 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		277D0ECE29F95BCF004F3150 /* TweetRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetRowView.swift; sourceTree = "<group>"; };
 		277D0ED129F968A6004F3150 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -65,6 +73,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27712C3D29FAA2840089FBF2 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				27712C3F29FAA2960089FBF2 /* ViewModels */,
+				27712C3E29FAA2910089FBF2 /* Views */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		27712C3E29FAA2910089FBF2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				27712C4029FAA2A30089FBF2 /* LoginView.swift */,
+				27712C4229FAA2C00089FBF2 /* RegistrationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		27712C3F29FAA2960089FBF2 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		27712C4629FAD6890089FBF2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				27FE08AF29F9462200E223AB /* TwitterSwiftUIApp.swift */,
+				27FE08B129F9462200E223AB /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		277D0EC329F94AC8004F3150 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,8 +131,9 @@
 		277D0EC629F94AE7004F3150 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				27F2E00D29FA33F7009F8C6C /* UploadTweet */,
 				277D0EC729F94AF0004F3150 /* Components */,
+				27712C3D29FAA2840089FBF2 /* Authentication */,
+				27F2E00D29FA33F7009F8C6C /* UploadTweet */,
 				27F2E00229FA0D6A009F8C6C /* SideMenu */,
 				277D0ED029F96886004F3150 /* MainTab */,
 				277D0ED629F969C0004F3150 /* Profile */,
@@ -108,6 +151,8 @@
 				27F2DFFF29FA08DC009F8C6C /* Users */,
 				277D0ECD29F94F5D004F3150 /* Tweets */,
 				27712C3B29FA89490089FBF2 /* TextArea.swift */,
+				27712C4429FAC4070089FBF2 /* RoundedShape.swift */,
+				27712C4729FAD7730089FBF2 /* CustomInputField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -321,12 +366,11 @@
 		27FE08AE29F9462200E223AB /* TwitterSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				27712C4629FAD6890089FBF2 /* App */,
 				277D0EC629F94AE7004F3150 /* Core */,
 				277D0EC529F94ADF004F3150 /* Service */,
 				277D0EC429F94AD9004F3150 /* Model */,
 				277D0EC329F94AC8004F3150 /* Extensions */,
-				27FE08AF29F9462200E223AB /* TwitterSwiftUIApp.swift */,
-				27FE08B129F9462200E223AB /* ContentView.swift */,
 				27FE08B329F9462400E223AB /* Assets.xcassets */,
 				27FE08B529F9462400E223AB /* Preview Content */,
 			);
@@ -416,6 +460,7 @@
 				277D0EE129F96CC7004F3150 /* ProfileView.swift in Sources */,
 				27FE08B229F9462200E223AB /* ContentView.swift in Sources */,
 				27F2E00829FA0DB3009F8C6C /* SideMenuRowView.swift in Sources */,
+				27712C4829FAD7730089FBF2 /* CustomInputField.swift in Sources */,
 				277D0ECF29F95BCF004F3150 /* TweetRowView.swift in Sources */,
 				27F2DFF329F9EDC0009F8C6C /* TweetFilterViewModel.swift in Sources */,
 				277D0ECC29F94B30004F3150 /* FeedView.swift in Sources */,
@@ -424,7 +469,10 @@
 				277D0ED929F969F1004F3150 /* ExploreView.swift in Sources */,
 				27712C3C29FA89490089FBF2 /* TextArea.swift in Sources */,
 				27F2E00A29FA0DD2009F8C6C /* SideMenuViewModel.swift in Sources */,
+				27712C4129FAA2A30089FBF2 /* LoginView.swift in Sources */,
+				27712C4329FAA2C00089FBF2 /* RegistrationView.swift in Sources */,
 				27F2E01129FA353C009F8C6C /* NewTweetView.swift in Sources */,
+				27712C4529FAC4070089FBF2 /* RoundedShape.swift in Sources */,
 				27F2E00129FA08F9009F8C6C /* UserRowView.swift in Sources */,
 				277D0ED229F968A6004F3150 /* MainTabView.swift in Sources */,
 				277D0EDB29F96A6A004F3150 /* NotificationsView.swift in Sources */,
@@ -560,16 +608,18 @@
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.fibeapp.TwitterSwiftUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -589,16 +639,18 @@
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.fibeapp.TwitterSwiftUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

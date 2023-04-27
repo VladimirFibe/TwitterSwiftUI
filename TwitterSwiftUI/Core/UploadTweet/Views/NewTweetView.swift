@@ -27,7 +27,7 @@ struct NewTweetView: View {
             HStack(alignment: .top) {
                 Circle()
                     .frame(width: 64, height: 64)
-                TextArea("What's happening?", text: $caption)
+                TextArea(text: $caption, placeholder: "What's happening?")
             }
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
             Spacer()
