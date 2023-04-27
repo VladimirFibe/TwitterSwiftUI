@@ -1,32 +1,16 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @State private var selectedFilters: TweetFilterViewModel = .tweets
+    @Namespace var animation
     var body: some View {
         VStack(alignment: .leading) {
             header
             buttons
-            VStack(alignment: .leading, spacing: 4) {
-                HStack {
-                    Text("Heath Ledger")
-                        .font(.title2).bold()
-                    Image(systemName: "checkmark.seal.fill")
-                        .foregroundColor(Color(.systemBlue))
-                }
-                Text("@joker")
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-                
-                Text("Your moms favorite villain")
-                    .font(.subheadline)
-                    .padding(.vertical)
-                HStack {
-                    Label("Almaty", systemImage: "mappin.and.ellipse")
-                    Label("fibeapp.ru", systemImage: "link")
-                }
-                .font(.caption)
-                .foregroundColor(.gray)
-            }
-            .padding(.horizontal)
+            userInfoDetails
+            tweetFilterBar
+            tweetsView
+            
             Spacer()
         }
     }
@@ -34,6 +18,75 @@ struct ProfileView: View {
 
 
 extension ProfileView {
+    var tweetsView: some View {
+        ScrollView {
+            LazyVStack {
+                ForEach(0..<9) { _ in
+                    TweetRowView()
+                        .padding(.vertical)
+                }
+            }
+        }
+    }
+    var tweetFilterBar: some View {
+        HStack(alignment: .top) {
+            ForEach(TweetFilterViewModel.allCases) { title in
+                VStack {
+                    Text(title.rawValue)
+                        .font(.subheadline)
+                        .fontWeight(selectedFilters == title ? .semibold : .regular)
+                        .frame(maxWidth: .infinity)
+                    if selectedFilters == title {
+                        Capsule()
+                            .frame(height: 3)
+                            .foregroundColor(Color(.systemBlue))
+                            .matchedGeometryEffect(id: "filter", in: animation)
+                    } else {
+                        Capsule()
+                            .frame(height: 3)
+                            .foregroundColor(.clear)
+                    }
+                }
+                .onTapGesture {
+                    withAnimation(.easeInOut) {
+                        selectedFilters = title
+                    }
+                }
+            }
+        }
+        .overlay(Divider(), alignment: .bottom)
+    }
+    var userInfoDetails: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            HStack {
+                Text("Heath Ledger")
+                    .font(.title2).bold()
+                Image(systemName: "checkmark.seal.fill")
+                    .foregroundColor(Color(.systemBlue))
+            }
+            Text("@joker")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+            
+            Text("Your moms favorite villain")
+                .font(.subheadline)
+                .padding(.vertical)
+            HStack(spacing: 24) {
+                Label("Almaty", systemImage: "mappin.and.ellipse")
+                Label("fibeapp.ru", systemImage: "link")
+            }
+            .font(.caption)
+            .foregroundColor(.gray)
+            
+            HStack(spacing: 24) {
+                ProfileStatisticView(value: 807, title: "Following")
+                ProfileStatisticView(value: 20, title: "Followers")
+            }
+            .padding(.vertical)
+        }
+        .padding(.horizontal)
+    }
+    
     var buttons: some View {
         HStack(spacing: 12) {
             Spacer()
@@ -83,6 +136,19 @@ extension ProfileView {
     }
 }
 
+struct ProfileStatisticView: View {
+    let value: Int
+    let title: String
+    var body: some View {
+        HStack(spacing: 4) {
+            Text("\(value)")
+                .font(.subheadline).bold()
+            Text(title)
+                .font(.caption)
+                .foregroundColor(.gray)
+        }
+    }
+}
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
