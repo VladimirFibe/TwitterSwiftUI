@@ -20,7 +20,7 @@ struct LoginView: View {
     var fields: some View {
         VStack(spacing: 40) {
             CustomInputField(image: "envelope", placeholder: "Email", text: $viewModel.email)
-            CustomInputField(image: "lock", placeholder: "Password", text: $viewModel.password)
+            CustomInputField(image: "lock", placeholder: "Password", text: $viewModel.password, isSecure: true)
         }
         .padding(.horizontal, 32)
         .padding(.top, 44)
@@ -47,8 +47,6 @@ struct LoginView: View {
             Task {
                 if await viewModel.signInWithEmailPassword() {
                     print("DEBUG: LoginView", viewModel.authenticationState == .authenticated ? "авторизован" : "не авторизован")
-                } else {
-                    print("DEBUG: LoginView - что то не так", viewModel.errorMessage)
                 }
             }
         } label: {

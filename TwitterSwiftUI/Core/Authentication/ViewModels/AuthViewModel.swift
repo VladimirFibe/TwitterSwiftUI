@@ -40,7 +40,6 @@ extension AuthViewModel {
             try await Auth.auth().signIn(withEmail: self.email, password: self.password)
             return true
         } catch {
-            print(error.localizedDescription)
             errorMessage = error.localizedDescription
             authenticationState = .unauthenticated
             return false
@@ -60,7 +59,6 @@ extension AuthViewModel {
             try await Firestore.firestore().collection("persons").document(uid).setData(data)
             return true
         } catch {
-            print(error.localizedDescription)
             errorMessage = error.localizedDescription
             authenticationState = .unauthenticated
             return false
@@ -71,7 +69,6 @@ extension AuthViewModel {
         do {
             try Auth.auth().signOut()
         } catch {
-            print(error)
             errorMessage = error.localizedDescription
         }
     }

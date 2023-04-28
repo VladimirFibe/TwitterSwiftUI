@@ -17,7 +17,7 @@ struct RegistrationView: View {
             CustomInputField(image: "envelope", placeholder: "Email", text: $viewModel.email)
             CustomInputField(image: "person", placeholder: "Username", text: $viewModel.username)
             CustomInputField(image: "person", placeholder: "Full name", text: $viewModel.fullname)
-            CustomInputField(image: "lock", placeholder: "Password", text: $viewModel.password)
+            CustomInputField(image: "lock", placeholder: "Password", text: $viewModel.password, isSecure: true)
         }
         .padding(.horizontal, 32)
     }
