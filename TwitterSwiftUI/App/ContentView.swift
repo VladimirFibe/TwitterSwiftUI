@@ -1,15 +1,18 @@
-//
-//  ContentView.swift
-//  TwitterSwiftUI
-//
-//  Created by Vladimir on 26.04.2023.
-//
-
 import SwiftUI
 
 struct ContentView: View {
     @State private var showMenu = false
+    @EnvironmentObject var viewModel: AuthViewModel
     var body: some View {
+        Group {
+            if viewModel.userSession == nil {
+                LoginView()
+            } else {
+                content
+            }
+        }
+    }
+    var content: some View {
         NavigationStack {
             ZStack(alignment: .topLeading) {
                 MainTabView()
@@ -48,5 +51,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(AuthViewModel())
     }
 }

@@ -3,27 +3,16 @@ import SwiftUI
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
+    @EnvironmentObject var viewModel: AuthViewModel
     var body: some View {
         VStack {
-            header
+            AuthHeaderView(text: "Hello\nWelcome Back")
             fields
             forgotPassword
             signin
             Spacer()
             signup
         }
-    }
-    var header: some View {
-            Text("Hello\nWelcome Back")
-                .font(.largeTitle)
-                .fontWeight(.semibold)
-                .frame(height: 260)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading)
-                .background(Color(.systemBlue))
-                .foregroundColor(.white)
-                .clipShape(RoundedShape(corners: .bottomRight))
-                .ignoresSafeArea()
     }
     
     var fields: some View {
@@ -53,20 +42,10 @@ struct LoginView: View {
     
     var signin: some View {
         Button {
-            
+            viewModel.login(withEmail: email, password: password)
         } label: {
-            Text("Sign In")
-                .font(.headline)
-                .foregroundColor(.white)
-                .frame(height: 50)
-                .frame(maxWidth: .infinity)
-                .background(Color(.systemBlue))
-                .clipShape(Capsule())
-                .padding(.top)
-                .padding(.horizontal, 24)
-                .shadow(color: .gray.opacity(0.5), radius: 10)
+            PrimaryButtonView(title: "Sign In")
         }
-
     }
     
     var signup: some View {
@@ -89,7 +68,7 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            LoginView()
+            LoginView().environmentObject(AuthViewModel())
         }
     }
 }
