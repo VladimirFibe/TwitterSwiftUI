@@ -1,24 +1,26 @@
 import SwiftUI
+import FirebaseAnalyticsSwift
 
 struct LoginView: View {
-    @State private var email = ""
-    @State private var password = ""
     @EnvironmentObject var viewModel: AuthViewModel
     var body: some View {
-        VStack {
-            AuthHeaderView(text: "Hello\nWelcome Back")
-            fields
-            forgotPassword
-            signin
-            Spacer()
-            signup
+        NavigationStack {
+            VStack {
+                AuthHeaderView(text: "Hello\nWelcome Back")
+                fields
+                forgotPassword
+                signin
+                Spacer()
+                signup
+            }
         }
+        .analyticsScreen(name: "\(LoginView.self)")
     }
     
     var fields: some View {
         VStack(spacing: 40) {
-            CustomInputField(image: "envelope", placeholder: "Email", text: $email)
-            CustomInputField(image: "lock", placeholder: "Password", text: $password)
+            CustomInputField(image: "envelope", placeholder: "Email", text: $viewModel.email)
+            CustomInputField(image: "lock", placeholder: "Password", text: $viewModel.password)
         }
         .padding(.horizontal, 32)
         .padding(.top, 44)
@@ -42,7 +44,13 @@ struct LoginView: View {
     
     var signin: some View {
         Button {
-            viewModel.login(withEmail: email, password: password)
+            Task {
+                if await viewModel.signInWithEmailPassword() {
+                    print("DEBUG: LoginView", viewModel.authenticationState == .authenticated ? "авторизован" : "не авторизован")
+                } else {
+                    print("DEBUG: LoginView - что то не так", viewModel.errorMessage)
+                }
+            }
         } label: {
             PrimaryButtonView(title: "Sign In")
         }

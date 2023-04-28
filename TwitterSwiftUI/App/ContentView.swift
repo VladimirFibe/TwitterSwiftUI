@@ -1,15 +1,14 @@
 import SwiftUI
-
+import FirebaseAuth
+import FirebaseAnalyticsSwift
 struct ContentView: View {
     @State private var showMenu = false
     @EnvironmentObject var viewModel: AuthViewModel
     var body: some View {
-        Group {
-            if viewModel.userSession == nil {
-                LoginView()
-            } else {
-                content
-            }
+        switch viewModel.authenticationState {
+        case .authenticated: content
+        case .authenticating: ProgressView()
+        case .unauthenticated: LoginView()
         }
     }
     var content: some View {

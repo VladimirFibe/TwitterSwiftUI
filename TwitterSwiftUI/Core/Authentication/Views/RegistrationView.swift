@@ -1,10 +1,6 @@
 import SwiftUI
 
 struct RegistrationView: View {
-    @State private var email = ""
-    @State private var username = ""
-    @State private var fullname = ""
-    @State private var password = ""
     @EnvironmentObject var viewModel: AuthViewModel
     @Environment(\.dismiss) var dismiss
     var body: some View {
@@ -18,16 +14,20 @@ struct RegistrationView: View {
     }
     var fields: some View {
         VStack(spacing: 40) {
-            CustomInputField(image: "envelope", placeholder: "Email", text: $email)
-            CustomInputField(image: "person", placeholder: "Username", text: $username)
-            CustomInputField(image: "person", placeholder: "Full name", text: $fullname)
-            CustomInputField(image: "lock", placeholder: "Password", text: $password)
+            CustomInputField(image: "envelope", placeholder: "Email", text: $viewModel.email)
+            CustomInputField(image: "person", placeholder: "Username", text: $viewModel.username)
+            CustomInputField(image: "person", placeholder: "Full name", text: $viewModel.fullname)
+            CustomInputField(image: "lock", placeholder: "Password", text: $viewModel.password)
         }
         .padding(.horizontal, 32)
     }
     var signup: some View {
         Button {
-            viewModel.login(withEmail: email, password: password)
+            Task {
+                if await viewModel.signUpWithEmailPassword() {
+                    print("DEBUG: LoginView", viewModel.authenticationState == .authenticated ? "авторизован" : "не авторизован")
+                }
+            }
         } label: {
             PrimaryButtonView(title: "Sign Up")
         }

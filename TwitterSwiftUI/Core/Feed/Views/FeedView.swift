@@ -1,4 +1,5 @@
 import SwiftUI
+import FirebaseAnalyticsSwift
 
 struct FeedView: View {
     @State private var showNewTweetView = false
@@ -22,6 +23,7 @@ struct FeedView: View {
             .fullScreenCover(isPresented: $showNewTweetView) {
                 NewTweetView()
             }
+            .analyticsScreen(name: "\(FeedView.self)")
     }
     
     var content: some View {
