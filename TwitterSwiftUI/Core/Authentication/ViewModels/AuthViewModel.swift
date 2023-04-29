@@ -7,6 +7,7 @@ enum AuthenticationState {
     case authenticating
     case selectingPhoto
     case authenticated
+    case imageLoading
 }
 
 @MainActor
@@ -19,7 +20,6 @@ final class AuthViewModel: ObservableObject {
     @Published var authenticationState: AuthenticationState = .unauthenticated
     @Published var errorMessage = ""
     @Published var didAuthenticateUser = false
-    @Published var image = UIImage()
     init() {
         registerAuthStateHandler()
     }
@@ -87,6 +87,22 @@ extension AuthViewModel {
         } catch {
             errorMessage = error.localizedDescription
             return false
+        }
+    }
+    
+    func uploadProfileImage(_ image: UIImage) {
+        authenticationState = .imageLoading
+        ImageUploader.uploadImage(image: image) { url in
+            guard let uid = self.user?.uid else {
+                self.authenticationState = .authenticated
+                return
+            }
+            Firestore.firestore()
+                .collection("persons")
+                .document(uid)
+                .updateData(["profileImageUrl": url]) { _ in
+                    self.authenticationState = .authenticated
+                }
         }
     }
 }

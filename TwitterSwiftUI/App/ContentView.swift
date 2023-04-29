@@ -8,7 +8,7 @@ struct ContentView: View {
         switch viewModel.authenticationState {
         case .authenticated: content
         case .authenticating: ProgressView()
-        case .unauthenticated: LoginView()
+        case .unauthenticated, .imageLoading: LoginView()
         case .selectingPhoto: ProfilePhotoSelectorView()
         }
     }

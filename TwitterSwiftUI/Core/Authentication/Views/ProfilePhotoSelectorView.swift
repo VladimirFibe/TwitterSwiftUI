@@ -26,9 +26,9 @@ struct ProfilePhotoSelectorView: View {
             }
             .frame(width: 180, height: 180)
             
-            if let profileImage {
+            if let selectedImage {
                 Button {
-                    
+                    viewModel.uploadProfileImage(selectedImage)
                 } label: {
                     PrimaryButtonView(title: "Continue")
                 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		27194BE629FCA4EB00D4828F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27194BE529FCA4EB00D4828F /* ImagePicker.swift */; };
+		27194BE929FCB12600D4828F /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27194BE829FCB12600D4828F /* ImageUploader.swift */; };
 		27712C3C29FA89490089FBF2 /* TextArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27712C3B29FA89490089FBF2 /* TextArea.swift */; };
 		27712C4129FAA2A30089FBF2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27712C4029FAA2A30089FBF2 /* LoginView.swift */; };
 		27712C4329FAA2C00089FBF2 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27712C4229FAA2C00089FBF2 /* RegistrationView.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		27194BE529FCA4EB00D4828F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		27194BE829FCB12600D4828F /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		27712C3B29FA89490089FBF2 /* TextArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextArea.swift; sourceTree = "<group>"; };
 		27712C4029FAA2A30089FBF2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		27712C4229FAA2C00089FBF2 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		277D0EC529F94ADF004F3150 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				27194BE829FCB12600D4828F /* ImageUploader.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				27F2E00129FA08F9009F8C6C /* UserRowView.swift in Sources */,
 				277D0ED229F968A6004F3150 /* MainTabView.swift in Sources */,
 				279D61B529FB672700886AAE /* AuthViewModel.swift in Sources */,
+				27194BE929FCB12600D4828F /* ImageUploader.swift in Sources */,
 				277D0EDB29F96A6A004F3150 /* NotificationsView.swift in Sources */,
 				279D61A729FB620500886AAE /* PrimaryButtonView.swift in Sources */,
 				27F2E00C29FA0FAB009F8C6C /* UserStatsView.swift in Sources */,
