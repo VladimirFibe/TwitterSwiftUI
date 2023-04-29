@@ -15,7 +15,8 @@ struct TwitterSwiftUIApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+            ProfilePhotoSelectorView()
                 .environmentObject(viewModel)
         }
     }

@@ -9,6 +9,7 @@ struct ContentView: View {
         case .authenticated: content
         case .authenticating: ProgressView()
         case .unauthenticated: LoginView()
+        case .selectingPhoto: ProfilePhotoSelectorView()
         }
     }
     var content: some View {

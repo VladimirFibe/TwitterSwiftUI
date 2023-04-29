@@ -3,9 +3,10 @@ import FirebaseAuth
 import FirebaseFirestore
 
 enum AuthenticationState {
-  case unauthenticated
-  case authenticating
-  case authenticated
+    case unauthenticated
+    case authenticating
+    case selectingPhoto
+    case authenticated
 }
 
 @MainActor
@@ -17,6 +18,8 @@ final class AuthViewModel: ObservableObject {
     @Published var user: User?
     @Published var authenticationState: AuthenticationState = .unauthenticated
     @Published var errorMessage = ""
+    @Published var didAuthenticateUser = false
+    @Published var image = UIImage()
     init() {
         registerAuthStateHandler()
     }
@@ -27,7 +30,7 @@ final class AuthViewModel: ObservableObject {
         if authStateHandler == nil {
             authStateHandler = Auth.auth().addStateDidChangeListener { auth, user in
                 self.user = user
-                self.authenticationState = user == nil ? .unauthenticated : .authenticated
+//                self.authenticationState = user == nil ? .unauthenticated : .authenticated
             }
         }
     }
@@ -38,6 +41,7 @@ extension AuthViewModel {
         authenticationState = .authenticating
         do {
             try await Auth.auth().signIn(withEmail: self.email, password: self.password)
+            authenticationState = .authenticated
             return true
         } catch {
             errorMessage = error.localizedDescription
@@ -57,6 +61,7 @@ extension AuthViewModel {
                 "fullname": fullname,
                 "uid": uid]
             try await Firestore.firestore().collection("persons").document(uid).setData(data)
+            authenticationState = .selectingPhoto
             return true
         } catch {
             errorMessage = error.localizedDescription
@@ -68,6 +73,7 @@ extension AuthViewModel {
     func signOut() {
         do {
             try Auth.auth().signOut()
+            authenticationState = .unauthenticated
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -76,6 +82,7 @@ extension AuthViewModel {
     func deleteAccount() async -> Bool {
         do {
             try await user?.delete()
+            authenticationState = .unauthenticated
             return true
         } catch {
             errorMessage = error.localizedDescription

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27194BE629FCA4EB00D4828F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27194BE529FCA4EB00D4828F /* ImagePicker.swift */; };
 		27712C3C29FA89490089FBF2 /* TextArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27712C3B29FA89490089FBF2 /* TextArea.swift */; };
 		27712C4129FAA2A30089FBF2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27712C4029FAA2A30089FBF2 /* LoginView.swift */; };
 		27712C4329FAA2C00089FBF2 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27712C4229FAA2C00089FBF2 /* RegistrationView.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27194BE529FCA4EB00D4828F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		27712C3B29FA89490089FBF2 /* TextArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextArea.swift; sourceTree = "<group>"; };
 		27712C4029FAA2A30089FBF2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		27712C4229FAA2C00089FBF2 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
@@ -95,6 +97,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27194BE429FCA4CF00D4828F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				27194BE529FCA4EB00D4828F /* ImagePicker.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		27712C3D29FAA2840089FBF2 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,6 +428,7 @@
 		27FE08AE29F9462200E223AB /* TwitterSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				27194BE429FCA4CF00D4828F /* Utilities */,
 				279D61A829FB642A00886AAE /* Supporting Files */,
 				27712C4629FAD6890089FBF2 /* App */,
 				277D0EC629F94AE7004F3150 /* Core */,
@@ -532,6 +543,7 @@
 				27FE08B029F9462200E223AB /* TwitterSwiftUIApp.swift in Sources */,
 				277D0ED929F969F1004F3150 /* ExploreView.swift in Sources */,
 				27712C3C29FA89490089FBF2 /* TextArea.swift in Sources */,
+				27194BE629FCA4EB00D4828F /* ImagePicker.swift in Sources */,
 				27F2E00A29FA0DD2009F8C6C /* SideMenuViewModel.swift in Sources */,
 				27EB25CD29FC1CEC00AB9EB8 /* ProfilePhotoSelectorView.swift in Sources */,
 				27712C4129FAA2A30089FBF2 /* LoginView.swift in Sources */,
