@@ -1,26 +1,19 @@
 import SwiftUI
+import FirebaseFirestoreSwift
 
 struct ExploreView: View {
+    @FirestoreQuery(collectionPath: "persons") var persons: [Person]
     var body: some View {
         ScrollView {
             LazyVStack {
-                ForEach(0 ..< 15) { item in
-                    NavigationLink(destination: ProfileView()) {
-                        UserRowView()
+                ForEach(persons) { person in
+                    NavigationLink(destination: ProfileView(person)) {
+                        UserRowView(person: person)
                     }
                 }
             }
         }
         .padding()
         .tint(.black)
-    }
-}
-
-struct ExploreView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            ExploreView()
-        }
-        
     }
 }

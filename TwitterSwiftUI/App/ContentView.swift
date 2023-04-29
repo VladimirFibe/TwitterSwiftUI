@@ -7,8 +7,8 @@ struct ContentView: View {
     var body: some View {
         switch viewModel.authenticationState {
         case .authenticated: content
-        case .authenticating: ProgressView()
-        case .unauthenticated, .imageLoading: LoginView()
+        case .authenticating, .imageLoading, .creatingUser: ProgressView()
+        case .unauthenticated: LoginView()
         case .selectingPhoto: ProfilePhotoSelectorView()
         }
     }
@@ -31,14 +31,22 @@ struct ContentView: View {
             }
             .navigationTitle("Twitter")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar(showMenu ? .hidden : .visible)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        withAnimation(.spring()){showMenu.toggle()}}) {
-                            Circle()
+                    if let person = viewModel.person {
+                        Button(action: {
+                            withAnimation(.spring()){showMenu.toggle()}}) {
+                                AsyncImage(url: URL(string: person.profileImageUrl)) { image in
+                                    image.resizable()
+                                        .scaledToFill()
+                                        .clipShape(Circle())
+                                } placeholder: {
+                                    ProgressView()
+                                }
                                 .frame(width: 32, height: 32)
-                                .foregroundColor(.black)
-                        }
+                            }
+                    }
                 }
             }
             .onAppear {

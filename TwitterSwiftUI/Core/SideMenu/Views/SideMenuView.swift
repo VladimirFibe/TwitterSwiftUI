@@ -17,10 +17,12 @@ struct SideMenuView: View {
     var menulist: some View {
         ForEach(SideMenuViewModel.allCases) { row in
             if row == .profile {
-                NavigationLink {
-                    ProfileView()
-                } label: {
-                    SideMenuRowView(row: row)
+                if let person = viewModel.person {
+                    NavigationLink {
+                        ProfileView(person)
+                    } label: {
+                        SideMenuRowView(row: row)
+                    }
                 }
             } else if row == .logout {
                 Button {
@@ -36,16 +38,24 @@ struct SideMenuView: View {
     }
     var header: some View {
         VStack(alignment: .leading) {
-            Circle()
-                .frame(width: 48, height: 48)
-            VStack(alignment: .leading, spacing: 4.0) {
-                Text("Bruce Wayne")
-                    .font(.headline)
-            Text("@batman")
-                .font(.caption)
-                .foregroundColor(.gray)
+            if let person = viewModel.person {
+                AsyncImage(url: URL(string: person.profileImageUrl)) { image in
+                    image.resizable()
+                        .scaledToFill()
+                } placeholder: {
+                    ProgressView()
+                }
+                    .frame(width: 48, height: 48)
+                    .clipShape(Circle())
+                VStack(alignment: .leading, spacing: 4.0) {
+                    Text(person.fullname)
+                        .font(.headline)
+                    Text("@\(person.username)")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
+                UserStatsView().padding(.vertical)
             }
-            UserStatsView().padding(.vertical)
         }
     }
 }

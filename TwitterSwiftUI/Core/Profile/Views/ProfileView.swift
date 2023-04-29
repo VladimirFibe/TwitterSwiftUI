@@ -4,6 +4,11 @@ struct ProfileView: View {
     @State private var selectedFilters: TweetFilterViewModel = .tweets
     @Environment(\.dismiss) var dismiss
     @Namespace var animation
+    private let person: Person
+    
+    init(_ person: Person) {
+        self.person = person
+    }
     var body: some View {
         VStack(alignment: .leading) {
             header
@@ -60,12 +65,12 @@ extension ProfileView {
     var userInfoDetails: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
-                Text("Heath Ledger")
+                Text(person.fullname)
                     .font(.title2).bold()
                 Image(systemName: "checkmark.seal.fill")
                     .foregroundColor(Color(.systemBlue))
             }
-            Text("@joker")
+            Text("@\(person.username)")
                 .font(.subheadline)
                 .foregroundColor(.gray)
             
@@ -126,16 +131,16 @@ extension ProfileView {
                         
                     }
 
-                    Circle()
-                        .frame(width: 72, height: 72)
+                    AsyncImage(url: URL(string: person.profileImageUrl), content: { image in
+                        image.resizable()
+                            .scaledToFill()
+                    }, placeholder: {
+                        ProgressView()
+                    })
+                    .frame(width: 72, height: 72)
+                    .clipShape(Circle())
                 }
                 .offset(x: 16, y: 24)
                 , alignment: .bottomLeading)
-    }
-}
-
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
     }
 }

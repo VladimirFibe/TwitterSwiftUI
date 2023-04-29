@@ -8,6 +8,7 @@ enum AuthenticationState {
     case selectingPhoto
     case authenticated
     case imageLoading
+    case creatingUser
 }
 
 @MainActor
@@ -17,11 +18,22 @@ final class AuthViewModel: ObservableObject {
     @Published var username = "macuser"
     @Published var fullname = "Vladimir Fibe"
     @Published var user: User?
+    @Published var person: Person?
     @Published var authenticationState: AuthenticationState = .unauthenticated
     @Published var errorMessage = ""
-    @Published var didAuthenticateUser = false
+    private let userservice = UserService()
+    
     init() {
         registerAuthStateHandler()
+    }
+    
+    private func reset() {
+        person = nil
+        email = ""
+        password = ""
+        username = ""
+        fullname = ""
+        errorMessage = ""
     }
     
     private var authStateHandler: AuthStateDidChangeListenerHandle?
@@ -30,7 +42,24 @@ final class AuthViewModel: ObservableObject {
         if authStateHandler == nil {
             authStateHandler = Auth.auth().addStateDidChangeListener { auth, user in
                 self.user = user
-//                self.authenticationState = user == nil ? .unauthenticated : .authenticated
+                switch self.authenticationState {
+                    
+                case .unauthenticated:
+                    if user != nil { self.authenticationState = .authenticated}
+                case .authenticating:
+                    self.authenticationState = user == nil ? .unauthenticated : .authenticated
+                case .selectingPhoto:
+                    print("DEBUG: selectingPhoto")
+                case .authenticated:
+                    self.authenticationState = user == nil ? .unauthenticated : .authenticated
+                case .imageLoading:
+                    print("DEBUG: imageLoading")
+                case .creatingUser:
+                    print("DEBUG: creatingUser")
+                }
+                if user != nil {
+                    self.fetchUser()
+                }
             }
         }
     }
@@ -41,7 +70,6 @@ extension AuthViewModel {
         authenticationState = .authenticating
         do {
             try await Auth.auth().signIn(withEmail: self.email, password: self.password)
-            authenticationState = .authenticated
             return true
         } catch {
             errorMessage = error.localizedDescription
@@ -51,7 +79,7 @@ extension AuthViewModel {
     }
     
     func signUpWithEmailPassword() async -> Bool {
-        authenticationState = .authenticating
+        authenticationState = .creatingUser
         do {
             let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
             let uid = authResult.user.uid
@@ -73,7 +101,7 @@ extension AuthViewModel {
     func signOut() {
         do {
             try Auth.auth().signOut()
-            authenticationState = .unauthenticated
+            reset()
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -82,7 +110,7 @@ extension AuthViewModel {
     func deleteAccount() async -> Bool {
         do {
             try await user?.delete()
-            authenticationState = .unauthenticated
+            reset()
             return true
         } catch {
             errorMessage = error.localizedDescription
@@ -103,6 +131,17 @@ extension AuthViewModel {
                 .updateData(["profileImageUrl": url]) { _ in
                     self.authenticationState = .authenticated
                 }
+        }
+    }
+    
+    func fetchUser() {
+        guard let uid = user?.uid else {
+            print("DEBUG: no user")
+            return }
+        userservice.fetchUser(withUid: uid) { person in
+            DispatchQueue.main.async {
+                self.person = person
+            }
         }
     }
 }
